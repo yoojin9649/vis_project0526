@@ -61,57 +61,57 @@ def first_page(request):
         print('first_page의 post')
         input=request.POST.get('input')
         print('first page의 post:', input)
-
-        kor_df = pd.read_csv('new_pop/KOR_new_pop.csv')
-        # jpn_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/JPN_pop.csv')
-        # oecd_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/OECD_pop.csv')
-        # usa_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/USA_pop.csv')
-
-        kor_young, kor_working, kor_elderly = get_three_col(kor_df)
-        kor_elderly=make_100(kor_elderly)
+        #
+        # kor_df = pd.read_csv('new_pop/KOR_new_pop.csv')
+        # # jpn_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/JPN_pop.csv')
+        # # oecd_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/OECD_pop.csv')
+        # # usa_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/USA_pop.csv')
+        #
+        # kor_young, kor_working, kor_elderly = get_three_col(kor_df)
+        # kor_elderly=make_100(kor_elderly)
         # jpn_young, jpn_working, jpn_elderly=get_three_col(jpn_df)
         # oecd_young, oecd_working, oecd_elderly=get_three_col(oecd_df)
         # usa_young, usa_working, usa_elderly=get_three_col(usa_df)
-
-        return render(request, 'polls/first_page.html', {'year': [i for i in range(1960, 2019)], \
-                                                                 'kor_young': kor_young, 'kor_working': kor_working, \
-                                                                 'kor_elderly': kor_elderly,
-                                                                 # 'temp_young':temp_young, 'temp_working':temp_working,\
-                                                                 # 'temp_elderly':temp_elderly
-                                                                 # 'jpn_young': jpn_young,\
-                                                                 # 'jpn_working':jpn_working, 'jpn_elderly': jpn_elderly,\
-                                                                 # 'oecd_young': oecd_young, 'oecd_working': oecd_working,\
-                                                                 # 'oecd_elderly': oecd_elderly, 'usa_young': usa_young,\
-                                                                 # 'usa_working':usa_working, 'usa_elderly': usa_elderly
-                                                                 })
+        return render(request, 'polls/first_page.html')
+        # return render(request, 'polls/first_page.html', {'year': [i for i in range(1960, 2019)], \
+        #                                                          'kor_young': kor_young, 'kor_working': kor_working, \
+        #                                                          'kor_elderly': kor_elderly,
+        #                                                          # 'temp_young':temp_young, 'temp_working':temp_working,\
+        #                                                          # 'temp_elderly':temp_elderly
+        #                                                          # 'jpn_young': jpn_young,\
+        #                                                          # 'jpn_working':jpn_working, 'jpn_elderly': jpn_elderly,\
+        #                                                          # 'oecd_young': oecd_young, 'oecd_working': oecd_working,\
+        #                                                          # 'oecd_elderly': oecd_elderly, 'usa_young': usa_young,\
+        #                                                          # 'usa_working':usa_working, 'usa_elderly': usa_elderly
+        #                                                          })
 
     elif request.method=="GET":
         print('first_page의 get')
         input=request.GET.get('input')
         print('first page의 get:', input)
 
-        kor_df = pd.read_csv('new_pop/KOR_new_pop.csv')
-        # jpn_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/JPN_pop.csv')
-        # oecd_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/OECD_pop.csv')
-        # usa_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/USA_pop.csv')
-
-        kor_young, kor_working, kor_elderly = get_three_col(kor_df)
-        kor_elderly = make_100(kor_elderly)
+        # kor_df = pd.read_csv('new_pop/KOR_new_pop.csv')
+        # # jpn_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/JPN_pop.csv')
+        # # oecd_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/OECD_pop.csv')
+        # # usa_df=pd.read_csv('C:/Users/dbwls/django/vis_project0526/pop_data/USA_pop.csv')
+        #
+        # kor_young, kor_working, kor_elderly = get_three_col(kor_df)
+        # kor_elderly = make_100(kor_elderly)
         # jpn_young, jpn_working, jpn_elderly=get_three_col(jpn_df)
         # oecd_young, oecd_working, oecd_elderly=get_three_col(oecd_df)
         # usa_young, usa_working, usa_elderly=get_three_col(usa_df)
-
-        return render(request, 'polls/first_page.html', {'year': [i for i in range(1960, 2019)], \
-                                                         'kor_young': kor_young, 'kor_working': kor_working, \
-                                                         'kor_elderly': kor_elderly,
-                                                         # 'temp_young':temp_young, 'temp_working':temp_working,\
-                                                         # 'temp_elderly':temp_elderly
-                                                         # 'jpn_young': jpn_young,\
-                                                         # 'jpn_working':jpn_working, 'jpn_elderly': jpn_elderly,\
-                                                         # 'oecd_young': oecd_young, 'oecd_working': oecd_working,\
-                                                         # 'oecd_elderly': oecd_elderly, 'usa_young': usa_young,\
-                                                         # 'usa_working':usa_working, 'usa_elderly': usa_elderly
-                                                         })
+        return render(request, 'polls/first_page.html')
+        # return render(request, 'polls/first_page.html', {'year': [i for i in range(1960, 2019)], \
+        #                                                  'kor_young': kor_young, 'kor_working': kor_working, \
+        #                                                  'kor_elderly': kor_elderly,
+        #                                                  # 'temp_young':temp_young, 'temp_working':temp_working,\
+        #                                                  # 'temp_elderly':temp_elderly
+        #                                                  # 'jpn_young': jpn_young,\
+        #                                                  # 'jpn_working':jpn_working, 'jpn_elderly': jpn_elderly,\
+        #                                                  # 'oecd_young': oecd_young, 'oecd_working': oecd_working,\
+        #                                                  # 'oecd_elderly': oecd_elderly, 'usa_young': usa_young,\
+        #                                                  # 'usa_working':usa_working, 'usa_elderly': usa_elderly
+        #                                                  })
 
 
 
