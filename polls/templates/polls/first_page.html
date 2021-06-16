@@ -5154,11 +5154,14 @@
             <form method="POST" action="{% url 'first_page' %}">
                 {% csrf_token %}
                 <input id="input_btn" value="" type="text" name="input">
-                <button class="submit_send_btn" onclick="get_cnty_file()" type="button">국가전송</button>
+                <button id="send_btn" class="submit_send_btn" onclick="get_cnty_file()" type="button">국가전송</button>
             </form>
         </div>
 <!--        <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.5.1.min.js"></script>-->
         <script>
+
+
+
         function get_cnty_file(){
             if ($('#input_btn').val() == ""){
                 alert('국가 입력하세요');
@@ -5249,6 +5252,13 @@
 
                 });
         }
+
+        $('#input_btn').keypress(function(event){
+             if ( event.which == 13 ) {
+                 $('#send_btn').click();
+                 return false;
+             }
+        });
 
         </script>
         <div style="margin:0px 90px 0px 90px;">
