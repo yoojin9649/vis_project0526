@@ -26,7 +26,7 @@ SECRET_KEY = '6+c&%hsx8mj@(_o)0tj&n*m)tc+q%!w^f(n#k=_5+r-x(qybg+'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'yoojin.pythonanywhere.com'
+    # 'yoojin.pythonanywhere.com'
 ]
 
 

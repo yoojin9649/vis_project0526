@@ -5140,190 +5140,196 @@
         <hr/>
         <br>
         <br>
-<!--        <div style="margin: 0px 90px 5px 90px">-->
-<!--            <h1>4 Stacked Area Chart(Young/Working/Elderly Pop Ratio(%)) 비교하기</h1>-->
-<!--            <p>국가 코드를 입력하여 한국의 그래프와 비교하면 다음과 같다.</p>-->
-<!--        </div>-->
-<!--        <div class="cnty_code" style="margin:10px 90px 10px 90px;">-->
-<!--            <p>-->
-<!--'AUS': '오스트레일리아', 'AUT': '오스트리아', 'BEL': '벨기에', 'CAN': '캐나다', 'CHE': '스위스', 'CHL': '칠레', 'COL': '콜롬비아', 'CZE': '체코', 'DEU': '독일', 'DNK': '덴마크', 'ESP': '스페인', 'EST': '에스토니아', 'FIN': '핀란드', 'FRA': '프랑스', 'GBR': '영국', 'GRC': '그리스', 'HUN': '헝가리', 'IRL': '아일랜드', 'ISL': '아이슬란드', 'ISR': '이스라엘', 'ITA': '이탈리아', 'JPN': '일본', 'KOR': '한국', 'LTU': '리투아니아', 'LUX': '룩셈부르크', 'LVA': '라트비아', 'MEX': '멕시코', 'NLD': '네덜란드', 'NOR': '노르웨이', 'NZL': '뉴질랜드', 'OECD': 'OECD', 'POL': '폴란드', 'PRT': '포르투갈', 'SVK': '슬로바키아', 'SVN': '슬로베니아', 'SWE': '스웨덴', 'TUR': '터키', 'USA': '미국'-->
-<!--            </p>-->
-<!--        </div>-->
-<!--        <div style="margin:0px 90px 0px 90px;">-->
-<!--            <h3>국가 코드 입력</h3>-->
-<!--            <form method="POST" action="{% url 'first_page' %}">-->
-<!--                {% csrf_token %}-->
-<!--                <input id="input_btn" value="" type="text" name="input">-->
-<!--                <button class="submit_send_btn" onclick="get_cnty_file()" type="button">국가전송</button>-->
-<!--            </form>-->
-<!--        </div>-->
+        <div style="margin: 0px 90px 5px 90px">
+            <h1>4 Stacked Area Chart(Young/Working/Elderly Pop Ratio(%)) 비교하기</h1>
+            <p>국가 코드를 입력하여 한국의 그래프와 비교하면 다음과 같다.</p>
+        </div>
+        <div class="cnty_code" style="margin:10px 90px 10px 90px;">
+            <p>
+'AUS': '오스트레일리아', 'AUT': '오스트리아', 'BEL': '벨기에', 'CAN': '캐나다', 'CHE': '스위스', 'CHL': '칠레', 'COL': '콜롬비아', 'CZE': '체코', 'DEU': '독일', 'DNK': '덴마크', 'ESP': '스페인', 'EST': '에스토니아', 'FIN': '핀란드', 'FRA': '프랑스', 'GBR': '영국', 'GRC': '그리스', 'HUN': '헝가리', 'IRL': '아일랜드', 'ISL': '아이슬란드', 'ISR': '이스라엘', 'ITA': '이탈리아', 'JPN': '일본', 'KOR': '한국', 'LTU': '리투아니아', 'LUX': '룩셈부르크', 'LVA': '라트비아', 'MEX': '멕시코', 'NLD': '네덜란드', 'NOR': '노르웨이', 'NZL': '뉴질랜드', 'OECD': 'OECD', 'POL': '폴란드', 'PRT': '포르투갈', 'SVK': '슬로바키아', 'SVN': '슬로베니아', 'SWE': '스웨덴', 'TUR': '터키', 'USA': '미국'
+            </p>
+        </div>
+        <div style="margin:0px 90px 0px 90px;">
+            <h3>국가 코드 입력</h3>
+            <form method="POST" action="{% url 'first_page' %}">
+                {% csrf_token %}
+                <input id="input_btn" value="" type="text" name="input">
+                <button class="submit_send_btn" onclick="get_cnty_file()" type="button">국가전송</button>
+            </form>
+        </div>
 <!--        <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.5.1.min.js"></script>-->
-<!--        <script>-->
-<!--        function get_cnty_file(){-->
-<!--            if ($('#input_btn').val() == ""){-->
-<!--                alert('국가 입력하세요');-->
-<!--                return;-->
-<!--            }-->
+        <script>
+        function get_cnty_file(){
+            if ($('#input_btn').val() == ""){
+                alert('국가 입력하세요');
+                return;
+            }
 
-<!--            cnty_input = document.querySelector('input[name="input"]');-->
+            cnty_input = document.querySelector('input[name="input"]');
 
-<!--                $.ajax({-->
-<!--                    url: 'get_cnty_file',-->
-<!--                    data: {-->
-<!--                        'myinput':cnty_input.value-->
-<!--                    },-->
-<!--                    datatype: 'json',-->
-<!--                    success: function(data){-->
-<!--                        console.log(data['temp_young']);-->
-<!--                        let OECDConfig = {-->
-<!--                            type: 'range',-->
+                $.ajax({
+                    url: 'get_cnty_file',
+                    data: {
+                        'myinput':cnty_input.value
+                    },
+                    datatype: 'json',
+                    success: function(data){
+                        console.log(data['temp_young']);
+                        if (data['name']=="error"){
+                            alert('해당 국가 코드는 없습니다!');
+                        } else {
 
-<!--                            title: {-->
-<!--                                text: data['name']+' Population Ratio(%)',-->
-<!--                                fontSize: 15,-->
-<!--                            },-->
+                            let OECDConfig = {
+                                type: 'range',
 
-<!--                            legend: {-->
-<!--                                align: 'center',-->
-<!--                                verticalAlign: 'bottom'-->
-<!--                            },-->
+                                title: {
+                                    text: data['name']+' Population Ratio(%)',
+                                    fontSize: 15,
+                                },
 
-<!--                            scaleX: {-->
-<!--                                // Set scale label-->
-<!--                                label: { text: 'Year' },-->
-<!--                                // Convert text on scale indices-->
-<!--                                labels: data['year']-->
-<!--                            },-->
+                                legend: {
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                },
 
-<!--                            scaleY: {-->
-<!--                                // Scale label with unicode character-->
-<!--                                label: { text: 'Ratio(%)' }-->
-<!--                            },-->
+                                scaleX: {
+                                    // Set scale label
+                                    label: { text: 'Year' },
+                                    // Convert text on scale indices
+                                    labels: data['year']
+                                },
 
-<!--                            plot: {-->
-<!--                                // Animation docs here:-->
-<!--                                // https://www.zingchart.com/docs/tutorials/styling/animation#effect-->
-<!--                                alphaArea:1,-->
-<!--                                aspect: 'spline',-->
-<!--                                hoverState: {-->
-<!--                                    backgroundColor: 'none'-->
-<!--                                },-->
-<!--                                lineWidth: '0px',-->
-<!--                                marker: {-->
-<!--                                    visible: false-->
-<!--                                }-->
-<!--                            },-->
-<!--                            series: [{-->
-<!--                                // Plot 1 values, linear data-->
-<!--                                text: data['name']+' Young Pop',-->
-<!--                                values: data['temp_young'],-->
-<!--                                backgroundColor: '#0ce9d1',-->
-<!--                                lineColor: '#0ce9d1'-->
-<!--                            },-->
-<!--                            {-->
-<!--                                text: data['name']+' Working Pop',-->
-<!--                                values: data['temp_working'],-->
-<!--                                backgroundColor: '#e7ffcc',-->
-<!--                                lineColor: '#e7ffcc'-->
-<!--                            },-->
-<!--                            {-->
-<!--                                text: data['name']+' Elderly Pop',-->
-<!--                                values: data['temp_elderly'],-->
-<!--                                backgroundColor: '#ccfff9',-->
-<!--                                lineColor: '#ccfff9'-->
-<!--                            }-->
-<!--                            ]-->
-<!--                        };-->
+                                scaleY: {
+                                    // Scale label with unicode character
+                                    label: { text: 'Ratio(%)' }
+                                },
 
-<!--                        // Render Method[3]-->
-<!--                        zingchart.render({-->
-<!--                            id: 'oecd_chart',-->
-<!--                            data: OECDConfig,-->
-<!--                        });-->
-<!--                    }-->
-<!--                });-->
-<!--        }-->
+                                plot: {
+                                    // Animation docs here:
+                                    // https://www.zingchart.com/docs/tutorials/styling/animation#effect
+                                    alphaArea:1,
+                                    aspect: 'spline',
+                                    hoverState: {
+                                        backgroundColor: 'none'
+                                    },
+                                    lineWidth: '0px',
+                                    marker: {
+                                        visible: false
+                                    }
+                                },
+                                series: [{
+                                    // Plot 1 values, linear data
+                                    text: data['name']+' Young Pop',
+                                    values: data['temp_young'],
+                                    backgroundColor: '#0ce9d1',
+                                    lineColor: '#0ce9d1'
+                                },
+                                {
+                                    text: data['name']+' Working Pop',
+                                    values: data['temp_working'],
+                                    backgroundColor: '#e7ffcc',
+                                    lineColor: '#e7ffcc'
+                                },
+                                {
+                                    text: data['name']+' Elderly Pop',
+                                    values: data['temp_elderly'],
+                                    backgroundColor: '#ccfff9',
+                                    lineColor: '#ccfff9'
+                                }
+                                ]
+                            };
 
-<!--        </script>-->
-<!--        <div style="margin:0px 90px 0px 90px;">-->
-<!--            <div id="oecd_chart"></div>-->
-<!--        </div>-->
-<!--        <div style="margin:0px 90px 0px 90px;">-->
-<!--            <div id="kor_chart"></div>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <hr/>-->
-<!--        <script>-->
-<!--        let KorConfig = {-->
-<!--            type: 'range',-->
+                            // Render Method[3]
+                            zingchart.render({
+                                id: 'oecd_chart',
+                                data: OECDConfig,
+                            });
+                        }
+                    },
 
-<!--            title: {-->
-<!--                text: 'KOR Population Ratio(%)',-->
-<!--                fontSize: 15,-->
-<!--            },-->
+                });
+        }
 
-<!--            legend: {-->
-<!--                align: 'center',-->
-<!--                verticalAlign: 'bottom'-->
-<!--            },-->
+        </script>
+        <div style="margin:0px 90px 0px 90px;">
+            <div id="oecd_chart"></div>
+        </div>
+        <div style="margin:0px 90px 0px 90px;">
+            <div id="kor_chart"></div>
+        </div>
+        <br>
+        <hr/>
+        <script>
+        let KorConfig = {
+            type: 'range',
 
-<!--            scaleX: {-->
-<!--                // Set scale label-->
-<!--                label: { text: 'Year' },-->
-<!--                // Convert text on scale indices-->
-<!--                labels: {{year|safe}}-->
-<!--            },-->
+            title: {
+                text: 'KOR Population Ratio(%)',
+                fontSize: 15,
+            },
 
-<!--            scaleY: {-->
-<!--                // Scale label with unicode character-->
-<!--                label: { text: 'Ratio(%)' }-->
-<!--            },-->
+            legend: {
+                align: 'center',
+                verticalAlign: 'bottom'
+            },
 
-<!--            plot: {-->
-<!--                // Animation docs here:-->
-<!--                // https://www.zingchart.com/docs/tutorials/styling/animation#effect-->
-<!--                alphaArea:1,-->
-<!--                aspect: 'spline',-->
-<!--                hoverState: {-->
-<!--                    backgroundColor: 'none'-->
-<!--                },-->
-<!--                lineWidth: '0px',-->
-<!--                marker: {-->
-<!--                    visible: false-->
-<!--                }-->
-<!--            },-->
-<!--            series: [{-->
-<!--                // Plot 1 values, linear data-->
-<!--                text: 'KOR Young Pop',-->
-<!--                values: {{ kor_young | safe }},-->
-<!--                backgroundColor: '#0ce9d1',-->
-<!--                lineColor: '#0ce9d1'-->
-<!--            },-->
-<!--            {-->
-<!--                text: 'KOR Working Pop',-->
-<!--                values: {{ kor_working | safe }},-->
-<!--                backgroundColor: '#e7ffcc',-->
-<!--                lineColor: '#e7ffcc'-->
-<!--            },-->
-<!--            {-->
-<!--                text: 'KOR Elderly Pop',-->
-<!--                values: {{ kor_elderly | safe }},-->
-<!--                backgroundColor: '#ccfff9',-->
-<!--                lineColor: '#ccfff9'-->
-<!--            }-->
-<!--            ]-->
-<!--        };-->
+            scaleX: {
+                // Set scale label
+                label: { text: 'Year' },
+                // Convert text on scale indices
+                labels: {{year|safe}}
+            },
 
-<!--        // Render Method[3]-->
-<!--        zingchart.render({-->
-<!--            id: 'kor_chart',-->
-<!--            data: KorConfig,-->
-<!--        });-->
+            scaleY: {
+                // Scale label with unicode character
+                label: { text: 'Ratio(%)' }
+            },
 
-<!--        </script>-->
+            plot: {
+                // Animation docs here:
+                // https://www.zingchart.com/docs/tutorials/styling/animation#effect
+                alphaArea:1,
+                aspect: 'spline',
+                hoverState: {
+                    backgroundColor: 'none'
+                },
+                lineWidth: '0px',
+                marker: {
+                    visible: false
+                }
+            },
+            series: [{
+                // Plot 1 values, linear data
+                text: 'KOR Young Pop',
+                values: {{ kor_young | safe }},
+                backgroundColor: '#0ce9d1',
+                lineColor: '#0ce9d1'
+            },
+            {
+                text: 'KOR Working Pop',
+                values: {{ kor_working | safe }},
+                backgroundColor: '#e7ffcc',
+                lineColor: '#e7ffcc'
+            },
+            {
+                text: 'KOR Elderly Pop',
+                values: {{ kor_elderly | safe }},
+                backgroundColor: '#ccfff9',
+                lineColor: '#ccfff9'
+            }
+            ]
+        };
+
+        // Render Method[3]
+        zingchart.render({
+            id: 'kor_chart',
+            data: KorConfig,
+        });
+
+        </script>
 
         <div style="margin: 0px 90px 5px 90px">
-            <h1>4 OECD 국가들의 1인당 GDP & 출산율</h1>
+            <h1>5 OECD 국가들의 1인당 GDP & 출산율</h1>
             <p>x축은 1인당 GDP(current US$), y축은 출산율(%), 원의 크기는 총 인구 수(million)을 나타낸다.</p>
         </div>
         <div id="graph3">
@@ -5336,7 +5342,7 @@
         <br>
         <hr/>
         <div style="margin: 0px 90px 5px 90px">
-            <h1>5 대한민국 인구구조 변화 (1960 ~ 2067)</h1>
+            <h1>6 대한민국 인구구조 변화 (1960 ~ 2067)</h1>
             <p>삼각형 구조에서 항아리형 구조 그리고 역삼각형 구조로 변화하고 있다.</p>
         </div>
         <div id="graph1">
